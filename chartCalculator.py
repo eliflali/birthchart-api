@@ -40,20 +40,21 @@ def get_planetary_positions(date_str, time_str, latitude, longitude, timezone_st
             const.PARS_FORTUNA: "ParsFortuna",
         }
         
-        houses = {
-            const.HOUSE1: "House1",
-            const.HOUSE2: "House2",
-            const.HOUSE3: "House3",
-            const.HOUSE4: "House4",
-            const.HOUSE5: "House5",
-            const.HOUSE6: "House6",
-            const.HOUSE7: "House7",
-            const.HOUSE8: "House8",
-            const.HOUSE9: "House9",
-            const.HOUSE10: "House10",
-            const.HOUSE11: "House11",
-            const.HOUSE12: "House12",
-        }
+        # Define houses in order
+        houses = [
+            (const.HOUSE1, "House1"),
+            (const.HOUSE2, "House2"),
+            (const.HOUSE3, "House3"),
+            (const.HOUSE4, "House4"),
+            (const.HOUSE5, "House5"),
+            (const.HOUSE6, "House6"),
+            (const.HOUSE7, "House7"),
+            (const.HOUSE8, "House8"),
+            (const.HOUSE9, "House9"),
+            (const.HOUSE10, "House10"),
+            (const.HOUSE11, "House11"),
+            (const.HOUSE12, "House12"),
+        ]
 
         for body_const in celestial_bodies:
             obj = chart.get(body_const)
@@ -77,17 +78,15 @@ def get_planetary_positions(date_str, time_str, latitude, longitude, timezone_st
                 "sign_pos": mc.signlon,
             }
 
-
-        # Example of getting house cusps (e.g., for all 12 houses)
+        # Get house cusps in order
         houses_info = {}
-        for house in houses:
-            house_cusp = chart.get(house)
-            houses_info[f"{house}"] = {
+        for house_const, house_name in houses:
+            house_cusp = chart.get(house_const)
+            houses_info[house_name] = {
                 "sign": house_cusp.sign,
                 "sign_position": house_cusp.signlon,
             }
         positions["houses"] = houses_info
-
 
         return positions
 
