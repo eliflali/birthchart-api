@@ -12,7 +12,7 @@ POST https://birthchart-api.onrender.com/calculate_chart
 
 ```json
 {
-  "date": "YYYY-MM-DD",
+  "date": "YYYY/MM/DD",
   "time": "HH:MM",
   "latitude": number,
   "longitude": number,
@@ -26,7 +26,7 @@ POST https://birthchart-api.onrender.com/calculate_chart
 curl -X POST https://birthchart-api.onrender.com/calculate_chart \
 -H "Content-Type: application/json" \
 -d '{
-  "date": "1990-01-01",
+  "date": "1990/01/01",
   "time": "12:00",
   "latitude": 41.0082,
   "longitude": 28.9784,
@@ -77,11 +77,3 @@ The server will start on `http://localhost:5001`
 ## Deployment
 
 This API is deployed on Render using the configuration in `.render.yaml`.
-
-## License
-
-[Add your license here]
-
-## Contributing
-
-[Add contribution guidelines if applicable]
