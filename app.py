@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from chartCalculator import get_planetary_positions
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/calculate_chart', methods=['POST'])
 def calculate_chart_endpoint():
@@ -25,7 +27,7 @@ def calculate_chart_endpoint():
     except ValueError:
         return jsonify({"error": "Invalid latitude or longitude format. Must be numbers."}), 400
 
-    chart_result = get_planetary_positions(birth_date, birth_time, lat_float, lon_float, 3)
+    chart_result = get_planetary_positions(birth_date, birth_time, lat_float, lon_float, timezone)
     
     if "error" in chart_result:
         # You might want to distinguish between client errors (4xx) and server errors (5xx)
